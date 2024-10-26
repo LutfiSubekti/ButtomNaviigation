@@ -10,15 +10,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
-
 @Composable
 fun InfoPage (modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFF1976D2)),
+            .background(Color(0xFF69F0AE)),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-    ){ Text(text = "Info Page")
+    ) {
+        Text(text = "Info Page")
     }
 }
