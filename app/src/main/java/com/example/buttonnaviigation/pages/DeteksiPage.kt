@@ -21,6 +21,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -57,6 +59,19 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
 
                 Spacer(modifier = Modifier.height(20.dp))
 
+                Text(
+                    text = "KAWO",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF6A4E42) // Coffee-like color
+                )
+                Text(
+                    text = "ARABICA COFFEE PLANT DISEASE DETECTION",
+                    fontSize = 14.sp,
+                    color = Color.Gray,
+                    textAlign = TextAlign.Center
+                )
+
                 // Camera access button
                 Button(
                     onClick = { /* Camera Access Functionality */ },
@@ -82,6 +97,9 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
                 ) {
                     Text(text = "PILIH DARI GALERI", color = Color.White, fontSize = 16.sp)
                 }
+                Spacer(modifier = Modifier.height(20.dp))
+                // App Title
+
             }
         }
     }
