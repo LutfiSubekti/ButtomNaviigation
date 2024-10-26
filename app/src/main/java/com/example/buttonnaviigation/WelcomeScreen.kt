@@ -42,7 +42,6 @@ fun WelcomeScreen(
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.fillMaxSize()
         )
-
         /// Content
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
