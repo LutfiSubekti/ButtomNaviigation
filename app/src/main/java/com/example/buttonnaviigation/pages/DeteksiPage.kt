@@ -53,12 +53,6 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
                         .background(Color(0xFFDDDDDD), shape = RoundedCornerShape(20.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.Info,
-                        contentDescription = "Camera Icon",
-                        modifier = Modifier.size(60.dp),
-                        tint = Color.Black
-                    )
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))

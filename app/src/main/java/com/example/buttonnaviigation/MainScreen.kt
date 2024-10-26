@@ -127,7 +127,7 @@ modifier: Modifier = Modifier)  {
                 modifier
                     .padding(10.dp)
                     .clip(RoundedCornerShape(30.dp)),
-                containerColor = Color(0xFFE0A9A5)
+                containerColor = Color(808080 )
             ) {
                 items.forEachIndexed { index, item ->
 
