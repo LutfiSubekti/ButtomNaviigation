@@ -32,6 +32,59 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.buttonnaviigation.R
 
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.compose.setContent
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.Preview
+import coil.compose.AsyncImage
+
+import android.net.Uri
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+import android.os.Environment
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.FileProvider
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 @Composable
 fun DeteksiPage (modifier: Modifier = Modifier) {
@@ -55,6 +108,52 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
 
     ) {
 
+        var selectedImages by remember {
+            mutableStateOf<Uri?>(null)
+        }
+
+        val context = LocalContext.current
+
+        // Fungsi untuk membuat file temporary baru
+        fun createImageFile(): File {
+            return File.createTempFile(
+                "JPEG_${SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())}_",
+                ".jpg",
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+            ).apply {
+                createNewFile()
+            }
+        }
+
+        // Menyimpan file dalam state
+        var tempImageFile by remember { mutableStateOf(createImageFile()) }
+
+        // Fungsi untuk mendapatkan Uri baru
+        fun getImageUri(): Uri {
+            return FileProvider.getUriForFile(
+                context,
+                "${context.packageName}.provider",
+                tempImageFile
+            )
+        }
+
+        var imageUri = remember {
+            FileProvider.getUriForFile(
+                context,
+                "${context.packageName}.provider",
+                tempImageFile
+            )
+        }
+
+        // Launcher untuk membuka kamera
+        val cameraLauncher = rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.TakePicture()
+        ) { success ->
+            if (success) {
+                selectedImages = getImageUri()
+            }
+        }
+
         // Inner box for frame with rounded corners and background color
         Box(
             modifier = Modifier
@@ -74,6 +173,15 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
                         .background(Color(0xFFDDDDDD), shape = RoundedCornerShape(20.dp)),
                     contentAlignment = Alignment.Center
                 ) {
+                    if (selectedImages == null) {
+                        Icon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = "Camera Icon",
+                            modifier = Modifier.size(60.dp),
+                            tint = Color.Black
+                        )
+                    }
+                    ImageLayoutView(selectedImages)
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -94,7 +202,11 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
 
                 // Camera access button
                 Button(
-                    onClick = { /* Camera Access Functionality */ },
+                    onClick = {
+                        tempImageFile = createImageFile()
+                        imageUri = getImageUri()
+                        cameraLauncher.launch(imageUri)
+                    },
                     colors = ButtonDefaults.buttonColors(Color(0xFF4CAF50)), // Green color
                     modifier = Modifier
                         .fillMaxWidth()
@@ -106,9 +218,18 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
 
                 Spacer(modifier = Modifier.height(5.dp))
 
+                val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.PickVisualMedia(),
+                    onResult = { uri -> selectedImages = uri }
+                )
+
                 // Gallery access button
                 Button(
-                    onClick = { /* Gallery Access Functionality */ },
+                    onClick = {
+                        singlePhotoPickerLauncher.launch(
+                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                        )
+                    },
                     colors = ButtonDefaults.buttonColors(Color(0xFF4CAF50)), // Green color
                     modifier = Modifier
                         .fillMaxWidth()
@@ -125,3 +246,13 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun ImageLayoutView(selectedImages: Uri?) {
+    AsyncImage(
+        model = selectedImages,
+        contentDescription = null,
+        modifier = Modifier.fillMaxWidth(),
+        contentScale = ContentScale.Fit
+    )
+
+}
