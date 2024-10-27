@@ -2,7 +2,9 @@
 
 package com.example.buttonnaviigation
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -41,6 +43,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,7 +66,16 @@ data class NavItemState(
 @Composable
 fun ButtonBaar   ( navController: NavHostController,
 modifier: Modifier = Modifier)  {
+    Box (modifier = modifier.fillMaxSize()){
+        // Background Image
+        Image(
+            painter = painterResource(id = R.drawable.avatar4),
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.fillMaxSize()
+        )
 
+    }
     val items = listOf(
         NavItemState(
             title = "Home",
@@ -98,7 +111,7 @@ modifier: Modifier = Modifier)  {
                 ),
                 title = {
                     Text(
-                        "Centered Top App Bar",
+                        "CabaiCare Detection",
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -107,14 +120,6 @@ modifier: Modifier = Modifier)  {
                     IconButton(onClick = { /* do something */ }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Localized description"
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(
-                            imageVector = Icons.Filled.Menu,
                             contentDescription = "Localized description"
                         )
                     }
@@ -152,7 +157,7 @@ modifier: Modifier = Modifier)  {
                         label = { Text(text = item.title) },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = Color(0xFF552A27),
-                            selectedTextColor = Color(0xFF63332F),
+                            selectedTextColor = Color(color = 0xFF63332F),
                             indicatorColor = Color(0xFFBB7E7A)
                         )
                     )

@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+
 
 
 @Composable
@@ -63,19 +66,19 @@ fun WelcomeScreen(
             )
 
             Text(
-                "WELCOME",
+                "SELAMAT DATANG",
                 fontSize = 32.sp,
-                //fontFamily = AlegreyaFontFamily,
-                fontWeight = FontWeight(700),
+                fontFamily = onesFontFamily,
+                fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
 
             Text(
-                "Do meditation. Stay focused.\nLive a healthy life.",
+                "DETEKSI PENYAKIT.\nDAUN CABAI.",
                 textAlign = TextAlign.Center,
-                //fontFamily = AlegreyaSansFontFamily,
+                //fontFamily = onesFontFamily,
                 fontSize = 18.sp,
-                fontWeight = FontWeight(500),
+                fontWeight = FontWeight.Normal,
                 color = Color.Black
             )
 
@@ -90,6 +93,10 @@ fun WelcomeScreen(
     }
 
 }
+
+val onesFontFamily = FontFamily(
+    Font(R.font.dua,FontWeight.Normal),
+)
 
 
 @Preview(showBackground = true, widthDp = 320, heightDp = 640)

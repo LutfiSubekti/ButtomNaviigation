@@ -1,5 +1,6 @@
 package com.example.buttonnaviigation.pages
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,13 +22,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.buttonnaviigation.R
+
 
 @Composable
 fun DeteksiPage (modifier: Modifier = Modifier) {
+
+    val onesFontFamily = FontFamily(
+        Font(R.font.tiga,FontWeight.Normal),
+    )
+    // Background Image
+    Image(
+        painter = painterResource(id = R.drawable.avatar4),
+        contentDescription = null,
+        contentScale = ContentScale.FillBounds,
+        modifier = Modifier.fillMaxSize()
+    )
     // Outer box frame
     Box(
         modifier = modifier
@@ -36,11 +54,12 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
 
     ) {
+
         // Inner box for frame with rounded corners and background color
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFFD1B999), shape = RoundedCornerShape(8.dp))
+                .background(Color(0xFFD1B999), shape = RoundedCornerShape(10.dp))
                 .padding(24.dp), // Padding within the frame
             contentAlignment = Alignment.Center
         ) {
@@ -60,13 +79,14 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "KAWO",
+                    text = "CabaiCare",
+                    fontFamily = onesFontFamily,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF6A4E42) // Coffee-like color
                 )
                 Text(
-                    text = "ARABICA COFFEE PLANT DISEASE DETECTION",
+                    text = "CABAI PLANT DISEASE DETECTION",
                     fontSize = 14.sp,
                     color = Color.Gray,
                     textAlign = TextAlign.Center

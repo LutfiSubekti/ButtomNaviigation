@@ -1,5 +1,6 @@
 package com.example.buttonnaviigation.pages
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,13 +17,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.buttonnaviigation.R
+
+
+val onesFontFamily = FontFamily(
+    Font(R.font.tiga,FontWeight.Normal),
+)
 
 @Composable
 fun InfoPage (modifier: Modifier = Modifier) {
+    // Background Image
+    Image(
+        painter = painterResource(id = R.drawable.avatar4),
+        contentDescription = null,
+        contentScale = ContentScale.FillBounds,
+        modifier = Modifier.fillMaxSize()
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -52,7 +70,8 @@ fun InfoPage (modifier: Modifier = Modifier) {
 
         // App Title
         Text(
-            text = "KAWO",
+            text = "CabaiCare",
+            fontFamily = onesFontFamily,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF6A4E42) // Coffee-like color
@@ -60,7 +79,7 @@ fun InfoPage (modifier: Modifier = Modifier) {
 
         // Subtitle
         Text(
-            text = "ARABICA COFFEE PLANT DISEASE DETECTION",
+            text = "CABAI PLANT DISEASE DETECTION",
             fontSize = 14.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center
@@ -76,7 +95,7 @@ fun InfoPage (modifier: Modifier = Modifier) {
                 .padding(16.dp)
         ) {
             Text(
-                text = "KAWO - Arabica Coffee Plant Disease Detection is an Android application used to detect diseases in Arabica coffee plants through leaf images.",
+                text = "CabaiCare - Cabai Plant Disease Detection is an Android application used to detect diseases in Cabai plants through leaf images.",
                 fontSize = 14.sp,
                 color = Color.Black,
                 textAlign = TextAlign.Center
