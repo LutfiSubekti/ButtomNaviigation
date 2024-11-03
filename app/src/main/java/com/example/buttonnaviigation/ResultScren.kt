@@ -1,4 +1,6 @@
 package com.example.buttonnaviigation
+
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -23,19 +25,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 
 @Composable
 fun ResultScreen(
     navController: NavHostController,
-    modifier: Modifier = Modifier)  {
+    modifier: Modifier = Modifier,
+    uri: Uri
+)  {
 
     // Background Image
-    Image(
-        painter = painterResource(id = R.drawable.avatar4),
-        contentDescription = null,
-        contentScale = ContentScale.FillBounds,
-        modifier = Modifier.fillMaxSize()
-    )
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -56,7 +55,7 @@ fun ResultScreen(
 
         // Success Message
         Text(
-            text = "Detection Successfully .",
+            text = "Detection Successfully.",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF325A3E),
@@ -67,7 +66,7 @@ fun ResultScreen(
 
         // Additional Message
         Text(
-            text = "Your payment was successfully!\n\nJust wait Plantfresher arrive at home asap.",
+            text = "Cabai terdeteksi mempunyai penyakit kuning.",
             fontSize = 16.sp,
             color = Color(0xFFA1A1A1),
             textAlign = TextAlign.Center,
@@ -89,15 +88,25 @@ fun ResultScreen(
                 .align(Alignment.TopCenter),
             contentAlignment = Alignment.Center
         ) {
-
+            ImageLayoutView(uri)
         }
     }
 }
 
 
-//untuk meriview fungsi dari welcomescreen
-@Preview(showBackground = true, widthDp = 320, heightDp = 640)
+////untuk meriview fungsi dari welcomescreen
+//@Preview(showBackground = true, widthDp = 320, heightDp = 640)
+//@Composable
+//fun ResultScreenPreview() {
+//    ResultScreen(rememberNavController())
+//}
+
 @Composable
-fun ResultScreenPreview() {
-    ResultScreen(rememberNavController())
+fun ImageLayoutView(selectedImages: Uri?) {
+    AsyncImage(
+        model = selectedImages,
+        contentDescription = null,
+        modifier = Modifier.fillMaxWidth(),
+        contentScale = ContentScale.Fit
+    )
 }

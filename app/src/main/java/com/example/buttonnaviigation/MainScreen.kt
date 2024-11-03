@@ -126,7 +126,7 @@ modifier: Modifier = Modifier)  {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /* do something */ }) {
+                    IconButton(onClick = { navController.navigate("welcome") }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Localized description"
@@ -173,16 +173,16 @@ modifier: Modifier = Modifier)  {
             }
         },
     ) { contentPadding ->
-        Contentscren(modifier = Modifier.padding(contentPadding), bottomNavState)
+        Contentscren(navController, modifier = Modifier.padding(contentPadding), bottomNavState)
     }
 
 }
 
 @Composable
-fun Contentscren(modifier: Modifier = Modifier, selectedIndex : Int) {
+fun Contentscren(navController: NavHostController, modifier: Modifier = Modifier, selectedIndex : Int) {
     when(selectedIndex){
         0-> HomePage()
-        1-> DeteksiPage()
+        1-> DeteksiPage(navController)
         2-> InfoPage()
     }
 }

@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.androidx.camera.view)
     implementation("androidx.camera:camera-lifecycle")
     implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation(libs.androidx.camera.extensions)
     implementation(libs.activity.compose)
     testImplementation(libs.junit)
