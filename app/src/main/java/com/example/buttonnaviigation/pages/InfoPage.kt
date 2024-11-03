@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,7 +30,7 @@ import com.example.buttonnaviigation.R
 
 
 val onesFontFamily = FontFamily(
-    Font(R.font.tiga,FontWeight.Normal),
+    Font(R.font.dua,FontWeight.Normal),
 )
 
 @Composable
@@ -48,26 +49,14 @@ fun InfoPage (modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Logo Placeholder Box (Replace with actual Image if available)
-        Box(
+        Image(
+            painter = painterResource(id = R.drawable.avatar),
+            contentDescription = null,
             modifier = Modifier
-                .size(120.dp)
-                .background(Color(0xFFA4A4A4), shape = RoundedCornerShape(60.dp)), // Placeholder color
-            contentAlignment = Alignment.Center
-        ) {
-            // Add your Image here if available, using Image composable.
-            Text(
-                text = "LOGO",
-                color = Color.White,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
+                .width(320.dp)
+                .height(240.dp),
+            contentScale = ContentScale.Fit
+        )
         // App Title
         Text(
             text = "CabaiCare",
@@ -76,7 +65,6 @@ fun InfoPage (modifier: Modifier = Modifier) {
             fontWeight = FontWeight.Bold,
             color = Color(0xFF6A4E42) // Coffee-like color
         )
-
         // Subtitle
         Text(
             text = "CABAI PLANT DISEASE DETECTION",
@@ -91,11 +79,11 @@ fun InfoPage (modifier: Modifier = Modifier) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFFD1B999), shape = RoundedCornerShape(8.dp)) // Light brown background color
+                .background(Color(0xFF139B5C), shape = RoundedCornerShape(8.dp)) // Light brown background color
                 .padding(16.dp)
         ) {
             Text(
-                text = "CabaiCare - Cabai Plant Disease Detection is an Android application used to detect diseases in Cabai plants through leaf images.",
+                text = "CabaiCare - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                 fontSize = 14.sp,
                 color = Color.Black,
                 textAlign = TextAlign.Center

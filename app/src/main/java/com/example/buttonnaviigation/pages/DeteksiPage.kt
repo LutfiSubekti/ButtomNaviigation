@@ -31,6 +31,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.buttonnaviigation.R
+
+
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -42,6 +47,12 @@ import coil.compose.AsyncImage
 import android.net.Uri
 import androidx.compose.ui.platform.LocalContext
 import android.os.Environment
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.FileProvider
 import java.io.File
 import java.text.SimpleDateFormat
@@ -52,7 +63,7 @@ import java.util.*
 fun DeteksiPage (modifier: Modifier = Modifier) {
 
     val onesFontFamily = FontFamily(
-        Font(R.font.tiga,FontWeight.Normal),
+        Font(R.font.dua,FontWeight.Normal),
     )
     // Background Image
     Image(
@@ -69,13 +80,10 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
 
     ) {
-
         var selectedImages by remember {
             mutableStateOf<Uri?>(null)
         }
-
         val context = LocalContext.current
-
         // Fungsi untuk membuat file temporary baru
         fun createImageFile(): File {
             return File.createTempFile(
@@ -90,7 +98,7 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
         // Menyimpan file dalam state
         var tempImageFile by remember { mutableStateOf(createImageFile()) }
 
-        // Fungsi untuk mendapatkan Uri baru
+        // Fungsi untuk mendapatkan Url baru
         fun getImageUri(): Uri {
             return FileProvider.getUriForFile(
                 context,
@@ -112,15 +120,18 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFFD1B999), shape = RoundedCornerShape(10.dp))
-                .padding(24.dp), // Padding within the frame
+                .height(580.dp)
+                .background(
+                    color = Color.White.copy(alpha = 0.9f),
+                    shape = RoundedCornerShape(50.dp)
+                ),
             contentAlignment = Alignment.Center
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                // Placeholder for camera icon
+                // tempat for camera icon
                 Box(
                     modifier = Modifier
                         .size(120.dp)
@@ -128,17 +139,19 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
                     contentAlignment = Alignment.Center
                 ) {
                     if (selectedImages == null) {
-                        Icon(
-                            imageVector = Icons.Default.Info,
-                            contentDescription = "Camera Icon",
-                            modifier = Modifier.size(60.dp),
-                            tint = Color.Black
+                        Image(
+                            painter = painterResource(id = R.drawable.picture),
+                            contentDescription = null,
+                            contentScale = ContentScale.FillBounds,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .height(50.dp)
                         )
                     }
                     ImageLayoutView(selectedImages)
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(100.dp))
 
                 Text(
                     text = "CabaiCare",
@@ -153,7 +166,7 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
                     color = Color.Gray,
                     textAlign = TextAlign.Center
                 )
-
+                Spacer(modifier = Modifier.height(10.dp))
                 // Camera access button
                 Button(
                     onClick = {
@@ -164,10 +177,18 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
                     colors = ButtonDefaults.buttonColors(Color(0xFF4CAF50)), // Green color
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 25.dp), // Padding to prevent full width
+                        .padding(horizontal = 50.dp), // Padding to prevent full width
                     shape = RoundedCornerShape(20.dp)
                 ) {
-                    Text(text = "AKSES KAMERA", color = Color.White, fontSize = 16.sp)
+                    Image(
+                        painter = painterResource(id = R.drawable.camera),
+                        contentDescription = null,
+                        contentScale = ContentScale.FillBounds,
+                        modifier = Modifier.padding(5.dp)
+                        .width(30.dp)
+                        .height(30.dp)
+                    )
+                    Text(text = "AKSES KAMERA", color = Color.Black, fontSize = 16.sp)
                 }
 
                 Spacer(modifier = Modifier.height(5.dp))
@@ -187,13 +208,21 @@ fun DeteksiPage (modifier: Modifier = Modifier) {
                     colors = ButtonDefaults.buttonColors(Color(0xFF4CAF50)), // Green color
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp), // Padding to prevent full width
+                        .padding(horizontal = 50.dp), // Padding to prevent full width
                     shape = RoundedCornerShape(20.dp)
                 ) {
-                    Text(text = "PILIH DARI GALERI", color = Color.White, fontSize = 16.sp)
+                    Image(
+                        painter = painterResource(id = R.drawable.photo1),
+                        contentDescription = null,
+                        contentScale = ContentScale.FillBounds,
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .width(30.dp)
+                            .height(30.dp)
+
+                    )
+                    Text(text = "PILIH DARI GALERI", color = Color.Black, fontSize = 16.sp)
                 }
-                Spacer(modifier = Modifier.height(20.dp))
-                // App Title
 
             }
         }

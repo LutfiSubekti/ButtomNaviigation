@@ -45,6 +45,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,6 +64,7 @@ data class NavItemState(
     val hasBadge: Boolean,
     val messages: Int
 )
+
 
 @Composable
 fun ButtonBaar   ( navController: NavHostController,
@@ -102,7 +105,11 @@ modifier: Modifier = Modifier)  {
     )
     var bottomNavState by remember { mutableIntStateOf(0) }
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val onesFontFamily = FontFamily(
+        Font(R.font.dua,FontWeight.Normal),
+    )
     Scaffold(
+
         topBar = {
             CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -112,6 +119,8 @@ modifier: Modifier = Modifier)  {
                 title = {
                     Text(
                         "CabaiCare Detection",
+                        fontFamily = onesFontFamily,
+                        fontWeight = FontWeight.Bold,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -135,7 +144,6 @@ modifier: Modifier = Modifier)  {
                 containerColor = Color(808080 )
             ) {
                 items.forEachIndexed { index, item ->
-
                     NavigationBarItem(
                         selected = bottomNavState == index,
                         onClick = { bottomNavState = index },
@@ -156,9 +164,9 @@ modifier: Modifier = Modifier)  {
                         },
                         label = { Text(text = item.title) },
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color(0xFF552A27),
-                            selectedTextColor = Color(color = 0xFF63332F),
-                            indicatorColor = Color(0xFFBB7E7A)
+                            selectedIconColor = Color(0xFF000000),
+                            selectedTextColor = Color(color = 0xFF000000),
+                            indicatorColor = Color(0xFF4CAF50)
                         )
                     )
                 }

@@ -16,17 +16,23 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ButtonNaviigationTheme {
+                //memanggil fungsi navigasi sebagai proses utama
                 NavigationView()
             }
         }
     }
 }
 
+
+
 @Composable
+//sebuah Fungsi dengan nama NavigationView
 fun NavigationView() {
+    // val merupakan variabel tidak dapat di ubah,
     val navController = rememberNavController()
+    // navhost merupakan sebuah library untuk mendefinisikan route
     NavHost(navController = navController, startDestination = "welcome") {
-        // also pass navController to each screen so we can use navController in there
+        // variabel passing dan bisa di share kepada aktiviti lainya
         composable("welcome") { WelcomeScreen(navController) }
         composable("button") { ButtonBaar(navController) }
     }

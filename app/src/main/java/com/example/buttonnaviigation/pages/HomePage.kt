@@ -27,8 +27,6 @@ import androidx.compose.ui.unit.sp
 import com.example.buttonnaviigation.R
 
 
-
-
 @Composable
 fun HomePage (modifier: Modifier = Modifier) {
     // Background Image
@@ -38,11 +36,6 @@ fun HomePage (modifier: Modifier = Modifier) {
         contentScale = ContentScale.FillBounds,
         modifier = Modifier.fillMaxSize()
     )
-    Box(modifier = modifier
-        .fillMaxSize()
-        .padding(horizontal = 35.dp, vertical = 32.dp),
-        contentAlignment = Alignment.Center){
-    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -50,13 +43,13 @@ fun HomePage (modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Example image; replace with actual drawable
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background), // Replace with your icon
+            painter = painterResource(id = R.drawable.list2), // Replace with your icon
             contentDescription = "Instruction Icon",
-            modifier = Modifier.size(120.dp)
-                .fillMaxWidth()
-                .background(Color(0xFFDDDDDD), shape = RoundedCornerShape(10.dp)),
+            modifier = Modifier
+            .width(320.dp)
+            .height(240.dp),
+        contentScale = ContentScale.Fit
         )
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -82,25 +75,21 @@ fun HomePage (modifier: Modifier = Modifier) {
 fun InstructionStep(stepNumber: String, instruction: String) {
     Row(
         modifier = Modifier
-            .background(Color(0xFFD1B999), shape = RoundedCornerShape(8.dp))
+            .background(Color(0xFF139B5C), shape = RoundedCornerShape(8.dp))
             .padding(8.dp)
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
 
-    )
-
-    {
+    ) {
         Text(
             text = stepNumber,
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Red,
+            color = Color.Black,
             modifier = Modifier
-//                .background(Color.LightGray, shape = RoundedCornerShape(10.dp))
-//                .padding(8.dp)
-        )
 
+        )
         Spacer(modifier = Modifier.width(16.dp))
 
         Text(
