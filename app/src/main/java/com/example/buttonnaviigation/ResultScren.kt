@@ -42,25 +42,14 @@ fun ResultScreen(
         contentAlignment = Alignment.Center
 
     ) {
-        // Rounded Rectangle with Shadow
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(580.dp)
-                .background(
-                    color = Color.White.copy(alpha = 0.9f),
-                    shape = RoundedCornerShape(50.dp)
-                )
-        )
-
         // Success Message
         Text(
-            text = "Detection Successfully.",
+            text = "Deteksi Sukses.",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF325A3E),
             modifier = Modifier
-                .padding(top = 359.dp)
+                .padding(top = 369.dp)
                 .align(Alignment.TopCenter)
         )
 
@@ -79,12 +68,11 @@ fun ResultScreen(
         Box(
             modifier = Modifier
                 .padding(top = 150.dp)
-                .size(150.dp)
+                .size(200.dp)
                 .background(
                     color = Color.White,
-                    shape = CircleShape
+                    shape = RoundedCornerShape(20.dp)
                 )
-                .border(6.dp, Color(0xFFA4A4A4), CircleShape)
                 .align(Alignment.TopCenter),
             contentAlignment = Alignment.Center
         ) {
