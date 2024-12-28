@@ -1,9 +1,12 @@
 package com.example.buttonnaviigation.pages
 
-
+import android.provider.OpenableColumns
+import android.content.ContentResolver
+import android.content.Context
+import java.io.InputStream
 import android.net.Uri
-import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -31,14 +34,16 @@ import androidx.core.content.FileProvider
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.buttonnaviigation.R
-import com.google.gson.Gson
+import com.example.buttonnaviigation.util.uploadFile
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.File
-import java.net.URLEncoder
 import java.text.SimpleDateFormat
 import java.util.*
 
-data class ImageURI (val uri: String)
-
+@OptIn(DelicateCoroutinesApi::class)
 @Composable
 fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier) {
 
@@ -211,10 +216,19 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
                 Button(
                     onClick = {
                         if (selectedImages != null) {
-//                            val uri = ImageURI(selectedImages.toString())
-//                            val jsonString = Gson().toJson(uri)
-                            val uri = Uri.encode(selectedImages.toString())
-                            navController.navigate("result/$uri")
+                            GlobalScope.launch(Dispatchers.Main) {
+                                try {
+                                    val res = uploadFile(
+                                        uriToFile(selectedImages!!, context)
+                                    )
+                                    val uri = Uri.encode(selectedImages.toString())
+                                    navController.navigate("result/$uri/${res?.data}")
+                                    Log.d("SuccessHTTPReq", "json: ${res?.data}")
+                                } catch (e: Exception) {
+                                    Log.e("ErrorHTTPReq", "Error fetching posts: ${e.message}")
+                                }
+                            }
+
                         }
                     },
                     colors = ButtonDefaults.buttonColors(Color(0xFF4CAF50)), // Green color
@@ -239,4 +253,45 @@ fun ImageLayoutView(selectedImages: Uri?) {
         modifier = Modifier.fillMaxWidth(),
         contentScale = ContentScale.Fit
     )
+}
+
+
+fun uriToFile(uri: Uri, context: Context): File {
+    val contentResolver: ContentResolver = context.contentResolver
+    val fileName = getFileName(uri, contentResolver)
+
+    // Buat file di cache directory
+    val file = File(context.cacheDir, fileName)
+
+    // Salin data dari URI ke file
+    contentResolver.openInputStream(uri)?.use { inputStream: InputStream ->
+        file.outputStream().use { outputStream ->
+            inputStream.copyTo(outputStream)
+        }
+    }
+
+    return file
+}
+
+private fun getFileName(uri: Uri, contentResolver: ContentResolver): String {
+    var result: String? = null
+    if (uri.scheme == "content") {
+        val cursor = contentResolver.query(uri, null, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val index = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (index != -1) {
+                    result = it.getString(index)
+                }
+            }
+        }
+    }
+    if (result == null) {
+        result = uri.path
+        val cut = result!!.lastIndexOf('/')
+        if (cut != -1) {
+            result = result!!.substring(cut + 1)
+        }
+    }
+    return result ?: "temp_file"
 }
