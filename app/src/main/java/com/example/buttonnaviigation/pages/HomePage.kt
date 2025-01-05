@@ -63,7 +63,7 @@ fun HomePage (modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        InstructionStep(stepNumber = "1", instruction = "Klik Tombol Home/Tombol Tengah")
+        InstructionStep(stepNumber = "1", instruction = "Klik Tombol Deteksi/Tombol Tengah")
         Spacer(modifier = Modifier.height(16.dp))
         InstructionStep(stepNumber = "2", instruction = "Kemudian Pilih Akses Kamera Ataupun Galeri Perangkat Anda")
     }

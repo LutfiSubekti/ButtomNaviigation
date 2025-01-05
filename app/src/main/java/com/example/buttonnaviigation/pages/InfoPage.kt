@@ -82,7 +82,7 @@ fun InfoPage (modifier: Modifier = Modifier) {
                 .padding(16.dp)
         ) {
             Text(
-                text = "CabaiCare - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                text = "CabaiCare - Aplikasi pendeteksi penyakit pada tanaman cabai merupakan solusi berbasis teknologi  untuk menganalisis gejala penyakit pada daun cabai secara cepat dan akurat, Untuk meempermudah  mengambil tindakan pencegahan atau penanganan dengan tepat untuk meningkatkan hasil panen.",
                 fontSize = 14.sp,
                 color = Color.Black,
                 textAlign = TextAlign.Center

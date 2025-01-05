@@ -61,7 +61,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
     Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = 30.dp, vertical = 32.dp),
+            .padding(horizontal = 50.dp, vertical = 32.dp),
         contentAlignment = Alignment.Center
 
     ) {
@@ -119,7 +119,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
                 // tempat for camera icon
                 Box(
                     modifier = Modifier
-                        .size(120.dp)
+                        .size(50.dp)
                         .background(Color(0xFFDDDDDD), shape = RoundedCornerShape(20.dp)),
                     contentAlignment = Alignment.Center
                 ) {
