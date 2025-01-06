@@ -179,6 +179,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
 
                 Spacer(modifier = Modifier.height(5.dp))
 
+                //galeri
                 val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
                     contract = ActivityResultContracts.PickVisualMedia(),
                     onResult = { uri -> selectedImages = uri }
@@ -213,6 +214,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
 
                 Spacer(modifier = Modifier.height(7.dp))
 
+                //Button deteksi
                 Button(
                     onClick = {
                         if (selectedImages != null) {
