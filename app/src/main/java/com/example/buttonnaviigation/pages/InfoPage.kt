@@ -82,7 +82,7 @@ fun InfoPage (modifier: Modifier = Modifier) {
                 .padding(16.dp)
         ) {
             Text(
-                text = "CabaiCare - Aplikasi pendeteksi penyakit pada tanaman cabai merupakan solusi berbasis teknologi  untuk menganalisis gejala penyakit pada daun cabai secara cepat dan akurat, Untuk meempermudah  mengambil tindakan pencegahan atau penanganan dengan tepat untuk meningkatkan hasil panen.",
+                text = "CabaiCare - Aplikasi pendeteksi penyakit pada tanaman cabai merupakan solusi berbasis teknologi  untuk menganalisis gejala penyakit pada daun cabai secara cepat dan akurat, Untuk mempermudah  mengambil tindakan pencegahan atau penanganan dengan tepat untuk meningkatkan hasil panen.",
                 fontSize = 14.sp,
                 color = Color.Black,
                 textAlign = TextAlign.Center

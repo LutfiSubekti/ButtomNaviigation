@@ -28,6 +28,7 @@ fun ResultScreen(
     uri: Uri,
     result: String?
 )  {
+
     Image(
         painter = painterResource(id = R.drawable.avatar4),
         contentDescription = null,

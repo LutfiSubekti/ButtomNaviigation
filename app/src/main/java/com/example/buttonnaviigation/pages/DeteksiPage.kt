@@ -105,7 +105,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(580.dp)
+                .height(500.dp)
                 .background(
                     color = Color.White.copy(alpha = 0.9f),
                     shape = RoundedCornerShape(50.dp)
@@ -119,7 +119,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
                 // tempat for camera icon
                 Box(
                     modifier = Modifier
-                        .size(50.dp)
+                        .size(120.dp)
                         .background(Color(0xFFDDDDDD), shape = RoundedCornerShape(20.dp)),
                     contentAlignment = Alignment.Center
                 ) {
@@ -136,7 +136,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
                     ImageLayoutView(selectedImages)
                 }
 
-                Spacer(modifier = Modifier.height(100.dp))
+                Spacer(modifier = Modifier.height(50.dp))
 
                 Text(
                     text = "CabaiCare",
@@ -174,7 +174,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
                             .width(30.dp)
                             .height(30.dp)
                     )
-                    Text(text = "AKSES KAMERA", color = Color.Black, fontSize = 16.sp)
+                    Text(text = "KAMERA", color = Color.Black, fontSize = 16.sp)
                 }
 
                 Spacer(modifier = Modifier.height(5.dp))
@@ -208,7 +208,7 @@ fun DeteksiPage (navController: NavHostController, modifier: Modifier = Modifier
                             .height(30.dp)
 
                     )
-                    Text(text = "PILIH DARI GALERI", color = Color.Black, fontSize = 16.sp)
+                    Text(text = "GALERI", color = Color.Black, fontSize = 16.sp)
                 }
 
 

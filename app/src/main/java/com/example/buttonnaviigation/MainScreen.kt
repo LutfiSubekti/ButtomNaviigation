@@ -104,7 +104,6 @@ modifier: Modifier = Modifier)  {
         Font(R.font.dua,FontWeight.Normal),
     )
     Scaffold(
-
         topBar = {
             CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
